@@ -3,7 +3,6 @@
  * Media files functions
  */
 
-
 /**
  * Theme setup for custom post types
  */
@@ -28,8 +27,6 @@ function joints_add_image_size_choose( $sizes )
 }
 // add_filter( 'image_size_names_choose', 'joints_add_image_size_choose' );
 
-
-
 /**
  * Change output for WP Gallery using LightGalleryPlugin
  *
@@ -38,7 +35,7 @@ function joints_add_image_size_choose( $sizes )
  *
  * @return string
  */
-function post_lightGallery($output, $attr)
+function joints_post_lightGallery($output, $attr)
 {
 	global $post, $wp_locale;
 
@@ -139,13 +136,13 @@ function post_lightGallery($output, $attr)
 
 	return $output;
 }
-//add_filter( 'post_gallery', 'post_lightGallery', 10, 2 );
+//add_filter( 'post_gallery', 'joints_post_lightGallery', 10, 2 );
 
 /**
  * @param $attachment_id
  * @return array
  */
-function get_attachment_props($attachment_id, $post = false)
+function joints_get_attachment_props($attachment_id, $post = false)
 {
 	$props = array(
 		'title'   => '',
@@ -174,3 +171,7 @@ function joints_mime_types($mimes) {
 	return $mimes;
 }
 //add_filter('upload_mimes', 'joints_mime_types');
+
+/** ========================================================================
+ *   Add your code here
+ *  ======================================================================== */

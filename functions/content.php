@@ -9,6 +9,38 @@
  */
 
 /**
+ * @param $content
+ * @param bool $paragraph_tag
+ * @param bool $br_tag
+ *
+ * @return string
+ */
+function joints_content_helper( $content, $paragraph_tag = false, $br_tag = false )
+{
+	return joints_paragraph_br_fix( do_shortcode( shortcode_unautop( $content ) ), $paragraph_tag, $br_tag );
+}
+
+/**
+ * Fix empty br and p tags
+ *
+ * @param $content
+ * @param bool $paragraph_tag
+ * @param bool $br_tag
+ *
+ * @return string
+ */
+function joints_paragraph_br_fix( $content, $paragraph_tag = false, $br_tag = false )
+{
+	$content = preg_replace('#^<\/p>|^<br \/>|<p>$#', '', $content);
+
+	if ( $br_tag ) $content = preg_replace('#<br \/>#', '', $content);
+
+	if ( $paragraph_tag ) $content = preg_replace('#<p>|</p>#', '', $content);
+
+	return trim($content);
+}
+
+/**
  * Show templates passing attributes and including the file.
  *
  * @param string $template_name

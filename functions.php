@@ -4,6 +4,11 @@
  *
  */
 
+$the_theme = wp_get_theme();
+$theme_version = $the_theme->get( 'Version' );
+
+define ('JOINTS_VERSION', $theme_version);
+
 //Helpers functions
 require_once(get_template_directory().'/functions/helpers.php');
 

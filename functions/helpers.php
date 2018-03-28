@@ -40,9 +40,9 @@ function joints_is_request( $type )
  */
 function joints_is_plugin_active( $plugin )
 {
-	if ( joints_is_request( 'frontend' ) ) {
+	// if ( joints_is_request( 'frontend' ) ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	}
+	// }
 
 	return is_plugin_active( $plugin );
 }
