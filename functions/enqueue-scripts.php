@@ -1,5 +1,12 @@
 <?php
-function site_scripts() {
+/**
+ * Enqueueing styles and script
+ */
+
+/**
+ * Enqueue script & styles
+ */
+function joints_site_scripts() {
 	global $wp_styles; // Call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
 
 	// Adding scripts file in the footer
@@ -12,5 +19,10 @@ function site_scripts() {
 	if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_localize_script( 'site-js', 'jointsJsObj', array(
+		'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+		'nonce'         => wp_create_nonce( 'joints_nonce' ),
+	) );
 }
-add_action('wp_enqueue_scripts', 'site_scripts', 999);
+add_action('wp_enqueue_scripts', 'joints_site_scripts', 999);

@@ -3,6 +3,7 @@
  * Media files functions
  */
 
+
 /**
  * Theme setup for custom post types
  */
@@ -11,7 +12,7 @@ function joints_add_image_size()
 	add_image_size('post-archive', 460, 280, true);
 	add_image_size('post-single', 810, 630, true);
 }
-//add_action( 'after_setup_theme', 'joints_add_image_size' );
+// add_action( 'after_setup_theme', 'joints_add_image_size' );
 
 /**
  * Display custom sizes in media select
@@ -22,10 +23,13 @@ function joints_add_image_size()
 function joints_add_image_size_choose( $sizes )
 {
 	return array_merge( $sizes, array(
-		'gallery-landscape' => __('Gallery landscape', 'jointswp'),
+		'post-archive' => __('Post archive thumb', 'jointswp'),
+		'post-single' => __('Single post archive', 'jointswp'),
 	) );
 }
 // add_filter( 'image_size_names_choose', 'joints_add_image_size_choose' );
+
+
 
 /**
  * Change output for WP Gallery using LightGalleryPlugin
@@ -166,11 +170,51 @@ function joints_get_attachment_props($attachment_id, $post = false)
 	return $props;
 }
 
-function joints_mime_types($mimes) {
+function joints_upload_mimes($mimes)
+{
 	$mimes['svg'] = 'image/svg+xml';
 	return $mimes;
 }
-//add_filter('upload_mimes', 'joints_mime_types');
+//add_filter('upload_mimes', 'joints_upload_mimes');
+
+function joints_remove_image_sizes( $sizes )
+{
+	unset( $sizes['medium']);
+	unset( $sizes['large']);
+
+	return $sizes;
+}
+// add_filter('intermediate_image_sizes_advanced', 'joints_remove_image_sizes');
+
+/**
+ * See all registered image sizes
+ *
+ * @return array
+ */
+function _joints_get_all_image_sizes()
+{
+	global $_wp_additional_image_sizes;
+
+	$default_image_sizes = array('thumbnail', 'medium', 'large');
+
+	foreach ($default_image_sizes as $size) {
+		$image_sizes[$size]['width'] = intval(get_option("{$size}_size_w"));
+		$image_sizes[$size]['height'] = intval(get_option("{$size}_size_h"));
+		$image_sizes[$size]['crop'] = get_option("{$size}_crop") ? get_option("{$size}_crop") : false;
+	}
+
+	if (isset($_wp_additional_image_sizes) && count($_wp_additional_image_sizes)) {
+		$image_sizes = array_merge($image_sizes, $_wp_additional_image_sizes);
+	}
+
+	return $image_sizes;
+}
+
+//add_action( 'shutdown', function(){
+//	print '<pre>';
+//	print_r( _joints_get_all_image_sizes() );
+//	print '</pre>';
+//});
 
 /** ========================================================================
  *   Add your code here
