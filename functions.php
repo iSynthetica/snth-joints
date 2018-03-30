@@ -1,7 +1,8 @@
 <?php
 /**
- * For more info: https://developer.wordpress.org/themes/basics/theme-functions/
+ * functions.php
  *
+ * For more info: https://developer.wordpress.org/themes/basics/theme-functions/
  */
 
 $the_theme = wp_get_theme();
@@ -28,53 +29,53 @@ define ('JOINTS_INCLUDES', JOINTS_DIR.'/includes');
 define ('JOINTS_INCLUDES_URL', JOINTS_URL.'/includes');
 
 //Helpers functions
-require_once(get_template_directory().'/functions/helpers.php');
+require_once(JOINTS_DIR.'/functions/helpers.php');
 
 // Theme support options
-require_once(get_template_directory().'/functions/theme-support.php');
+require_once(JOINTS_DIR.'/functions/theme-support.php');
 
 // Media files
-require_once(get_template_directory().'/functions/media.php');
+require_once(JOINTS_DIR.'/functions/media.php');
 
 // WP Head and other cleanup functions
-require_once(get_template_directory().'/functions/cleanup.php');
+require_once(JOINTS_DIR.'/functions/cleanup.php');
 
 // Register scripts and stylesheets
-require_once(get_template_directory().'/functions/enqueue-scripts.php');
+require_once(JOINTS_DIR.'/functions/enqueue-scripts.php');
 
 // Register custom menus and menu walkers
-require_once(get_template_directory().'/functions/menu.php');
+require_once(JOINTS_DIR.'/functions/menu.php');
 
 // Register sidebars/widget areas
-require_once(get_template_directory().'/functions/sidebar.php');
+require_once(JOINTS_DIR.'/functions/sidebar.php');
 
 // Makes WordPress comments suck less
-require_once(get_template_directory().'/functions/comments.php');
+require_once(JOINTS_DIR.'/functions/comments.php');
 
 // Replace 'older/newer' post links with numbered navigation
-require_once(get_template_directory().'/functions/page-navi.php');
+require_once(JOINTS_DIR.'/functions/page-navi.php');
 
 // Adds support for multiple languages
-require_once(get_template_directory().'/functions/translation/translation.php');
+require_once(JOINTS_DIR.'/functions/translation/translation.php');
 
 if ( joints_is_woocommerce_active() ) {
-	require_once(get_template_directory().'/functions/woo.php');
+	require_once(JOINTS_DIR.'/functions/woo.php');
 }
 
 // Adds site styles to the WordPress editor
-// require_once(get_template_directory().'/functions/editor-styles.php'); 
+// require_once(JOINTS_DIR.'/functions/editor-styles.php');
 
 // Remove Emoji Support
-require_once(get_template_directory().'/functions/disable-emoji.php');
+require_once(JOINTS_DIR.'/functions/disable-emoji.php');
 
 // Related post function - no need to rely on plugins
-// require_once(get_template_directory().'/functions/related-posts.php'); 
+// require_once(JOINTS_DIR.'/functions/related-posts.php');
 
 // Use this as a template for custom post types
-// require_once(get_template_directory().'/functions/custom-post-type.php');
+// require_once(JOINTS_DIR.'/functions/custom-post-type.php');
 
 // Customize the WordPress login menu
-// require_once(get_template_directory().'/functions/login.php'); 
+require_once(JOINTS_DIR.'/functions/login.php');
 
 // Customize the WordPress admin
-// require_once(get_template_directory().'/functions/admin.php'); 
+require_once(JOINTS_DIR.'/functions/admin.php');
